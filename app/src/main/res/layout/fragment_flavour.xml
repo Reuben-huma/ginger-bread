@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FlavourFragment">
+
+    <data>
+
+        <variable
+            name="flavourFragment"
+            type="eu.tutorials.gingerbread.FlavourFragment" />
+
+        <variable
+            name="flavourViewModel"
+            type="eu.tutorials.gingerbread.model.GingerBreadViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{@string/vanilla.equals(flavourViewModel.flavour)}"
+                    android:onClick="@{() -> flavourViewModel.setFlavour(@string/vanilla)}"
+                    android:text="@string/vanilla" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{@string/chocolate.equals(flavourViewModel.flavour)}"
+                    android:onClick="@{() -> flavourViewModel.setFlavour(@string/chocolate)}"
+                    android:text="@string/chocolate" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{@string/red_velvet.equals(flavourViewModel.flavour)}"
+                    android:onClick="@{() -> flavourViewModel.setFlavour(@string/red_velvet)}"
+                    android:text="@string/red_velvet" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{@string/salted_caramel.equals(flavourViewModel.flavour)}"
+                    android:onClick="@{() -> flavourViewModel.setFlavour(@string/salted_caramel)}"
+                    android:text="@string/salted_caramel" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{@string/coffee.equals(flavourViewModel.flavour)}"
+                    android:onClick="@{() -> flavourViewModel.setFlavour(@string/coffee)}"
+                    android:text="@string/coffee" />
+            </RadioGroup>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="?attr/dividerHorizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+            <TextView
+                android:id="@+id/subTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{@string/subtotal(flavourViewModel.total)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                tools:text="Subtotal: R5,00" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> flavourFragment.onCancel()}"
+                android:text="@string/cancel"
+                app:layout_constraintEnd_toStartOf="@id/next"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subTotal" />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:onClick="@{() -> flavourFragment.onNext()}"
+                android:text="@string/next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cancel"
+                app:layout_constraintTop_toBottomOf="@+id/subTotal" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>
